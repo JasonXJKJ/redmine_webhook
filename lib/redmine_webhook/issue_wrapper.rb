@@ -5,17 +5,20 @@ module RedmineWebhook
       @journal = journal
     end
 
-    def to_hash(status)
-      if status == '创建'
-        @issue.author.firstname + @issue.author.lastname + ' ' + status + ' ' + @issue.tracker.name + ' : ' + @issue.subject + '。指派给: ' + @issue.assigned_to.firstname + @issue.assigned_to.lastname
+    def to_new
+      if @issue.assigned_to == nil
+        @issue.author.lastname + @issue.author.firstname + ' 创建 ' + @issue.tracker.name + ' : ' + @issue.subject + '。紧急程度: ' + @issue.priority.name
       else
-        change = ''
-        for item in @journal do
+        @issue.author.lastname + @issue.author.firstname + ' 创建 ' + @issue.tracker.name + ' : ' + @issue.subject + '。指派给: ' + @issue.assigned_to.lastname + @issue.assigned_to.firstname + '。紧急程度: ' + @issue.priority.name
+      end
+    end
 
-        end
-
-        @journal.author.user.firstname + @journal.author.user.lastname + ' ' + status + ' ' + @issue.tracker.name + ' : ' + @issue.subject
-        # @issue.author.firstname + @issue.author.lastname + ' ' + status + ' ' + @issue.tracker.name +' : ' + @issue.subject + '。指派给: ' + @issue.assigned_to.firstname + @issue.assigned_to.lastname
+    def to_update
+      if @issue.assigned_to == nil
+        @journal.user.lastname + @journal.user.firstname + ' 修改 ' + @issue.tracker.name + ' : ' + @issue.subject + '。紧急程度: ' + @issue.priority.name + '。状态: ' + @issue.status.name
+      else
+        @journal.user.lastname + @journal.user.firstname + ' 修改 ' + @issue.tracker.name + ' : ' + @issue.subject + '。指派给: ' + @issue.assigned_to.lastname + @issue.assigned_to.firstname + '。紧急程度: ' + @issue.priority.name + '。状态: ' + @issue.status.name
+      end
     end
   end
 end

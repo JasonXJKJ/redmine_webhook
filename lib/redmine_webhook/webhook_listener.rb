@@ -25,7 +25,7 @@ module RedmineWebhook
       {
         :msgtype => 'text',
         :text => {
-          :content => RedmineWebhook::IssueWrapper.new(issue, nil).to_hash('创建'),
+          :content => RedmineWebhook::IssueWrapper.new(issue).to_new,
         }
       }.to_json
     end
@@ -34,7 +34,7 @@ module RedmineWebhook
       {
         :msgtype => 'text',
         :text => {
-          :content => RedmineWebhook::IssueWrapper.new(issue, journal).to_hash('更新'),
+          :content => RedmineWebhook::IssueWrapper.new(issue, journal).to_update,
         }
       }.to_json
     end
