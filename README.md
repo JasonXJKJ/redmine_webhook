@@ -17,7 +17,7 @@ Redmine 钉钉自定义机器人 WebHook 插件
       }
     }
 
-
+![avatar](https://raw.githubusercontent.com/JasonXJKJ/redmine_webhook/master/picture.png)
 
 License
 ------------------------------
