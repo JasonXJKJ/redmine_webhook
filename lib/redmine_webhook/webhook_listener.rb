@@ -25,7 +25,7 @@ module RedmineWebhook
       {
         :msgtype => 'text',
         :text => {
-          :content => RedmineWebhook::IssueWrapper.new(issue).to_new,
+          :content => RedmineWebhook::IssueWrapper.new(issue, nil).to_new,
         }
       }.to_json
     end
